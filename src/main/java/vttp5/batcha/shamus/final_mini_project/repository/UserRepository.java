@@ -1,4 +1,4 @@
-package vttp5.batcha.shamus.final_mini_project.service.user;
+package vttp5.batcha.shamus.final_mini_project.repository;
 
 import java.util.Optional;
 
@@ -6,34 +6,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import vttp5.batcha.shamus.final_mini_project.model.UserModel;
 
-@Service
-public class UserService 
+@Repository
+public class UserRepository 
 {
-    @Autowired
+    @Autowired 
     private JdbcTemplate jdbcTemplate;
-
+    
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     public static final String SQL_REGISTER_USER = """
-                                                        INSERT INTO users 
-                                                            (username, password_hashed, email, role)
-                                                        VALUES 
-                                                            (?, ?, ?, ?)
+                                                    INSERT INTO users 
+                                                        (username, password, email, role)
+                                                    VALUES 
+                                                        (?, ?, ?, ?)
                                                     """;
 
     public static final String SQL_FIND_BY_USERNAME = "SELECT * FROM users WHERE username = ?";
     public static final String SQL_FIND_BY_EMAIL = "SELECT * FROM users WHERE email = ?";
 
-
-    
     // Register new user
     public Integer registerNewUser (UserModel user)
     {
+        if(user.getRole() == null)
+        {
+            user.setRole("USER"); // assign default role to new user
+        }
+
         Integer userRegister = jdbcTemplate.update(SQL_REGISTER_USER, 
                                                 user.getUsername(), 
                                                 passwordEncoder.encode(user.getPassword()),

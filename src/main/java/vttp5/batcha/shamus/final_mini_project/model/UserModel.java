@@ -3,10 +3,7 @@ package vttp5.batcha.shamus.final_mini_project.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

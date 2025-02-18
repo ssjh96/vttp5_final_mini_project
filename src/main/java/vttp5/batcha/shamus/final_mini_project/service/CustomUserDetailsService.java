@@ -1,4 +1,4 @@
-package vttp5.batcha.shamus.final_mini_project.service.user;
+package vttp5.batcha.shamus.final_mini_project.service;
 
 import java.util.Optional;
 
@@ -10,18 +10,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import vttp5.batcha.shamus.final_mini_project.model.UserModel;
-import vttp5.batcha.shamus.final_mini_project.model.UserModel;
+import vttp5.batcha.shamus.final_mini_project.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService
 {
     @Autowired
-    private UserService userService;
+    private UserRepository userRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
     {
-        Optional<UserModel> userOpt = userService.findByUsername(username);
+        Optional<UserModel> userOpt = userRepo.findByUsername(username);
 
         if (userOpt.isEmpty())
         {

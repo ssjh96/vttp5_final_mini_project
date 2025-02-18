@@ -14,7 +14,7 @@ SELECT "CREATING USERS...";
 CREATE TABLE users (
     id INT AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL, -- this is the PK
-    password_hashed VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     role ENUM('USER', 'ADMIN') DEFAULT 'USER',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
