@@ -24,7 +24,7 @@ public class SecurityConfig
     {
         // Customisation
         // For each request, if the requests is "/" or any url after /users/, or any url after /images/, leave unauthenticated by permitall()
-        http.authorizeHttpRequests(request -> request.requestMatchers("/", "/users/**", "/images/**").permitAll()
+        http.authorizeHttpRequests(request -> request.requestMatchers("/", "/users/**", "/images/**", "/hello/**").permitAll()
 
         // For any other request, authenticate to ensures all other endpoints are secured.
         .anyRequest().authenticated())

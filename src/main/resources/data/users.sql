@@ -9,7 +9,7 @@ CREATE DATABASE project;
 USE project;
 
 -- create one or more tables
--- select "Creating RSVP table..." as msg; // cmdline
+-- select "Creating users table..." as msg; // cmdline
 SELECT "CREATING USERS...";
 CREATE TABLE users (
     id INT AUTO_INCREMENT,
